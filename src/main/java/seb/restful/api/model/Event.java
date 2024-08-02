@@ -2,24 +2,21 @@ package seb.restful.api.model;
 
 import java.time.LocalDateTime;
 
+import seb.restful.api.model.enums.MessageType;
+
 public class Event {
 
-    public enum Type {
-        DEBUG, INFO, WARNING, ERROR
-    }
-
     private int id;
-    private LocalDateTime timeStamp;
-    private Type type;
+    private LocalDateTime time;
+    private MessageType type;
     private String message;
     private String userId;
     private String transactionId;
 
-    public Event(
-            int id, Type type, String message, String userId, String transactionId
-    ) {
+    public Event(int id, LocalDateTime time, MessageType type,
+    String message, String userId, String transactionId) {
         this.id = id;
-        this.timeStamp = timeStamp.now();
+        this.time = time;
         this.type = type;
         this.message = messageLengthValidator(message);
         this.userId = userId;
@@ -34,19 +31,19 @@ public class Event {
         this.id = id;
     }
 
-    public LocalDateTime getTimeStamp() {
-        return timeStamp;
+    public LocalDateTime getTime() {
+        return time;
     }
 
-    public void setTimeStamp(LocalDateTime timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
-    public Type getType() {
+    public MessageType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(MessageType type) {
         this.type = type;
     }
 
@@ -80,6 +77,4 @@ public class Event {
         }
         return this.message = value;
     }
-
-
 }

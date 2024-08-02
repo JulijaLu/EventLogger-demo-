@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS events;
+CREATE TABLE events (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    time TIMESTAMP DEFAULT NOW() NOT NULL,
+    type ENUM ('DEBUG', 'INFO', 'WARNING', 'ERROR'),
+    message VARCHAR(1024),
+    userId VARCHAR(30),
+    transactionId VARCHAR(30)
+);

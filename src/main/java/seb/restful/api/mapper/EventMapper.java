@@ -15,8 +15,8 @@ public interface EventMapper {
     Event findById(int id);
 
     @Insert("INSERT INTO events (" +
-            "id, type, message, userId, transactionId ) " +
-            "VALUES (#{id}, #{type}, #{message}, #{userId}, #{transactionId});")
+            "id, time, type, message, userId, transactionId ) " +
+            "VALUES (#{id}, #{time}, #{type}, #{message}, #{userId}, #{transactionId});")
     void createEvent(Event event);
 
     @Update("UPDATE events SET id = #{id}, type = #{type}, message = #{message}," +

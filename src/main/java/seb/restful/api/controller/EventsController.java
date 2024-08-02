@@ -1,8 +1,9 @@
 package seb.restful.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import seb.restful.api.mapper.EventMapper;
 import seb.restful.api.model.Event;
+import seb.restful.api.service.EventServiceImpl;
 
 import java.util.List;
 
@@ -10,35 +11,32 @@ import java.util.List;
 @RequestMapping("/events")
 public class EventsController {
 
-    EventMapper eventMapper;
+    @Autowired
+    private EventServiceImpl eventService;
 
-    public EventsController(EventMapper eventMapper) {
-        this.eventMapper = eventMapper;
-    }
-
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<Event> getAllEvents() {
-        return eventMapper.findAll();
+        return eventService.findAll();
     }
 
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable("id") int id) {
-        return eventMapper.findById(id);
+        return eventService.findById(id);
     }
 
     @PostMapping("/create")
     public void createEvent(@RequestBody Event event) {
-        eventMapper.createEvent(event);
+        eventService.createEvent(event);
     }
 
     @PutMapping("/update/{id}")
     public void updateEvent(@PathVariable("id") int id) {
-        eventMapper.updateEvent(id);
+        eventService.updateEvent(id);
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteEvent(@PathVariable("id") int id) {
-        eventMapper.deleteEvent(id);
+        eventService.delete(id);
     }
 
 }
